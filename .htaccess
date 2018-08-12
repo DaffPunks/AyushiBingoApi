@@ -6,6 +6,7 @@ RewriteRule ^(.*)$ index.php/$1 [L]
 RewriteCond %{REQUEST_METHOD} OPTIONS
 RewriteRule ^(.*)$ blank.php [QSA,L]
 
-Header set Access-Control-Allow-Origin "*"
-Header set Access-Control-Allow-Methods "*"
-Header set Access-Control-Allow-Headers "*"
+SetEnvIf Origin "http(s)?://(www\.)?(localhost:4200|ayushibingo.herokuapp.com)$" AccessControlAllowOrigin=$0
+Header set Access-Control-Allow-Origin %{AccessControlAllowOrigin}e env=AccessControlAllowOrigin
+Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+Header set Access-Control-Allow-Headers "x-test-header, Origin, X-Requested-With, Content-Type, Accept, Hash"
